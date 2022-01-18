@@ -2,7 +2,7 @@ import { EmployeesListItem } from "../employees-list-item/empoyees-list-item";
 
 import './employees-list.css';
 
-export const EmployeesList = ({ data, onDelete }) => {
+export const EmployeesList = ({ data, onDelete, onToggleProp }) => {
 
     const elements = data.map(item => {
         const { id, ...itemProps } = item;
@@ -10,7 +10,8 @@ export const EmployeesList = ({ data, onDelete }) => {
             <EmployeesListItem
                 key={id}
                 {...itemProps}
-                onDelete={() => onDelete(id)} />
+                onDelete={() => onDelete(id)}
+                onToggleProp={(e) => onToggleProp(id, e.currentTarget.getAttribute('data-toggle'))} />
             // {...item} - это сокращение для массива[data]  name={item.name} salary={item.salary}
         )
     })
